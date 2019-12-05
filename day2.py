@@ -17,6 +17,7 @@ def intcode(arr):
         else:
             return -1
         arr[arr[i+3]] = prod
+    print('hmm')
     
 def init_comp(mem, noun, verb):
     mem_adj = mem
