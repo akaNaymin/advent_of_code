@@ -27,7 +27,7 @@ def init_comp(mem, noun, verb):
     return run
 
 
-with open('day2.input') as f:
+with open('inputs/day2.input') as f:
         inp = f.read().split(',')
         inp = [int(i) for i in inp]
 

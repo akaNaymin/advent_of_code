@@ -5,7 +5,7 @@ def calc_fuel(m):
     m = m - 2
     return m
 
-with open('day1.input') as f:
+with open('inputs/day1.input') as f:
     modules = f.readlines()
 
 

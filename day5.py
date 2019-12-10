@@ -63,7 +63,7 @@ def intcode(mem):
             p += n_params + 1
 
 # print(intcode([1101,100,-1,4,0]))
-with open('day5.input') as f:
+with open('inputs/day5.input') as f:
     program = f.read().split(',')
     program = [int(i) for i in program]
 
