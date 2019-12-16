@@ -1,10 +1,11 @@
 import itertools
 
-def intcode(mem, p=0, inputs=[]):
-    cur_out = []
-    while True:
-        # Parse instructions
-        inst = mem[p]
+class IntCode:
+    def __init__(self, mem, pointer=0):
+        self.mem = mem
+        self.pointer = pointer
+    
+    def parse_inst(self, inst):
         n_params = 0
         opcode = inst % 100
         if opcode in [1, 2, 7, 8]:
@@ -13,11 +14,65 @@ def intcode(mem, p=0, inputs=[]):
             n_params = 1
         elif opcode in [5, 6]:
             n_params = 2
+        else:
+            raise Exception
         inst //= 100
-        param_mode = []
-        for i in range(n_params):
-            param_mode.append(inst % 10)
+        modes = []
+        for p in range(n_params):
+            modes.append(inst % 10)
             inst //= 10
+        return opcode, modes
+
+    def excecute_op(self, opcode, args):
+        if opcode == 99:
+            return
+        elif opcode == 1:
+            self.mem[args[2]] = args[0] + args[1]
+        elif opcode == 2:
+            self.mem[args[2]] = args[0] * args[1]
+        elif opcode == 3:
+            if len(inputs) > 0:
+                cur_in = inputs[0]
+                inputs = inputs[1:]
+            else:
+                cur_in = int(input('opcode 3:'))
+            self.mem[self.args[2]] = cur_in
+        elif opcode == 4:
+            cur_out.append(params[0])
+            return (4, p, cur_out)
+        elif opcode == 5:
+            if args[0] != 0:
+                self.pointer = args[1]
+                freeze_pointer = True
+        elif opcode == 6:
+            if args[0] == 0:
+                self.poiinter = args[1]
+                freeze_pointer = True
+        elif opcode == 7:
+            if args[0] < args[1]:
+                self.mem[args[2]] = 1
+            else:
+                self.mem[args[2]] = 0
+        elif opcode == 8:
+            if args[0] == args[1]:
+                self.mem[args[2]] = 1
+            else:
+                self.mem[args[2]] = 0
+        else:
+            raise Exception
+        if not freeze_pointer:
+            p += n_params + 1
+
+    def run(self):
+        while True:
+            opcode, modes = self.parse_inst(self.mem[self.pointer])
+
+            op_return = self.excecute_op(opcode, args)
+
+def intcode(mem, p=0, inputs=[]):
+    cur_out = []
+    while True:
+
         # Set params
         params = []
         args = mem[p:p+n_params+1]
