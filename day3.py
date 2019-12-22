@@ -1,7 +1,7 @@
 import numpy as np
 
 
-with open('inputs/day3.input') as f:
+with open('input/day3.txt') as f:
   text = f.read()
 
 t1, t2 = text.split('\n')

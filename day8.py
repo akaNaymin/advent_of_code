@@ -8,7 +8,7 @@ def sif_to_layers(sif, width, height):
         layers.append(layer)
     return layers
 
-with open('inputs/day8.sif') as f:
+with open('input/day8.sif') as f:
     sif = f.read()
 
 img = sif_to_layers(sif, 25, 6)

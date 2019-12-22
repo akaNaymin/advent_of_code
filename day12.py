@@ -51,7 +51,7 @@ def axis_loop(moons, axis):
     return res
 
 moons = []
-with open('inputs/day12.input') as f:
+with open('input/day12.txt') as f:
     pat = re.compile(r'<x=(-?\d+), y=(-?\d+), z=(-?\d+)>')
     for res in re.finditer(pat, f.read()):
         coord = [int(x) for x in res.groups()]

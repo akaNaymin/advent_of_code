@@ -139,7 +139,7 @@ def chain_loop(software):
     print(max_out, max_perm)
 
 
-with open('inputs/day7.input') as f:
+with open('input/day7.txt') as f:
     program = f.read().split(',')
     program = [int(i) for i in program]
     chain_loop(program)

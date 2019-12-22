@@ -43,7 +43,7 @@ def shortest_path(orbs, source, dest):
         path = p1[n-1:] + p2[n-1:]
         return len(path)
 
-with open('inputs/day6.input') as f:
+with open('input/day6.txt') as f:
     solar_map = f.readlines()
 
 orbs = parse_system(solar_map)
